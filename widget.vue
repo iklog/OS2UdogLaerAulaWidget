@@ -1,5 +1,5 @@
 <script>
-// Dit samlede institutions-objekt opdateret med de nye dagtilbud-lister udtrukket fra filen
+// Dit samlede institutions-objekt
 const INSTITUTIONS = {
   thisted_skoler: ['280215','280220','280811','281197','281396','765001','765004','765005','785002','785006','785007','785009','785013','785015','785016','785301','787002','787004','787005','787006','787008','787012','787013','787016','787019','787021','787022','787024','787030','787033','787035','787036','787214','787303','787000'],
   thisted_dagtilbud: ['G21469','G21673','G21674','G21675','G21676','G21677','G21678','G21704','G21705','G21706','G21707','G21708','G21731','G21775','G22746','G22747','G22748','G22749','G22750','G22751','G22752','G22753','G22754','G22755','G22756','G22757','G22759','G22760','G22761','G22762','G22763','G22764','G22765','G22768'],
@@ -12,7 +12,6 @@ const INSTITUTIONS = {
   vejle_skoler: ['280331', '280332', '280333', '280334', '280335', '280463', '280474', '280537', '281635', '281813', '281814', '281817', '281818', '281819', '281820', '281821', '281822', '603002', '603004', '603005', '605002', '605007', '605008', '605009', '611008', '611010', '611011', '611013', '617001', '617002', '627008', '631002', '631003', '631005', '631006', '631009', '631011', '631012', '631013', '631014', '631015', '631017', '631018', '631019', '631023', '631024', '631029', '631034'],
   viborg_skoler: ['280384', '281294', '281584', '281892', '281893', '282151', '761006', '761011', '761012', '761016', '763001', '763005', '763006', '763008', '769001', '769003', '775001', '775004', '775006', '789002', '789005', '789008', '789009', '791002', '791003', '791004', '791005', '791006', '791008', '791010', '791013', '791014', '791015', '791019', '791020', '791027', '791028', '791029'],
   
-  // NYE LISTER: Genereret automatisk ud fra 20260521-Dagtilbud (1).csv (Aktive dagtilbud)
   aalborg_dagtilbud: ['G11078', 'G11080', 'G15689', 'G15691', 'G15701', 'G15703', 'G15705', 'G15711', 'G15713', 'G15715', 'G15717', 'G15719', 'G15721', 'G15723', 'G15725', 'G15727', 'G15729', 'G15731', 'G15733', 'G15737', 'G15739', 'G15741', 'G15743', 'G15745', 'G15747', 'G15749', 'G15751', 'G15756', 'G15760', 'G15762', 'G15764', 'G15768', 'G15770', 'G15772', 'G15774', 'G15778', 'G15770', 'G15772', 'G15774', 'G15778', 'G15780', 'G15782', 'G15784', 'G15786', 'G15788', 'G15790', 'G15794', 'G15796', 'G15798', 'G15800', 'G15802', 'G15804', 'G15806', 'G15808', 'G15810', 'G15812', 'G15814', 'G15818', 'G15820', 'G15822', 'G15824', 'G15826', 'G15828', 'G15820', 'G15822', 'G15824', 'G15826', 'G15828', 'G15830', 'G15832', 'G15834', 'G15836', 'G15838', 'G15840', 'G15842', 'G15846', 'G15848', 'G15850', 'G15852', 'G15854', 'G15856', 'G15858', 'G15860', 'G15862', 'G15864', 'G15866', 'G15868', 'G15870', 'G15872', 'G15874', 'G15876', 'G15878', 'G15880', 'G15882', 'G15884', 'G15886', 'G15888', 'G15890', 'G15892', 'G15894', 'G15898', 'G15900', 'G15902', 'G15904', 'G15906', 'G15908', 'G15910', 'G15912', 'G15914', 'G15916', 'G15918', 'G15920', 'G15922', 'G15924', 'G15926', 'G15930', 'G15932', 'G15934', 'G15936', 'G15938', 'G15940', 'G15942', 'G15944', 'G15946', 'G15948', 'G15950', 'G15952', 'G15954', 'G15956', 'G15958', 'G15960', 'G15962', 'G15964', 'G15966', 'G15968', 'G15970', 'G15972', 'G15974', 'G15978', 'G15980', 'G15982', 'G15984', 'G15986', 'G15988', 'G15994', 'G15996', 'G15998', 'G16000', 'G16167', 'G16330', 'G16332', 'G16334', 'G16336', 'G16594', 'G16596', 'G16598', 'G16600', 'G16602', 'G16604', 'G16606', 'G16608', 'G16610', 'G16612', 'G17290', 'G17291', 'G17292', 'G17293', 'G17514', 'G17515', 'G17516', 'G17517', 'G17518', 'G17520', 'G17522', 'G17524', 'G17527', 'G17529', 'G17531', 'G17535', 'G17725', 'G23494', 'G23499', 'G23562', 'G23608', 'G24215', 'G24313', 'G24319', 'G24393', 'G24501', 'G24607', 'G24711', 'G25036', 'G25180', 'G25196', 'G25334', 'G25525', 'G25542', 'G25543', 'G25544', 'G25545', 'G25559', 'G25560', 'G25561', 'G25562', 'G25563', 'G25564', 'G25565', 'G25566', 'G25567', 'G25582', 'G25739', 'G25961', 'G27121'],
   esbjerg_dagtilbud: ['G13785', 'G13787', 'G13789', 'G13791', 'G13793', 'G13795', 'G13797', 'G13799', 'G13801', 'G13805', 'G13807', 'G13809', 'G13811', 'G13813', 'G13815', 'G13817', 'G13819', 'G13821', 'G13822', 'G13825', 'G13826', 'G13828', 'G13820', 'G13822', 'G13825', 'G13826', 'G13828', 'G13832', 'G13833', 'G13834', 'G13836', 'G13837', 'G13838', 'G13839', 'G13840', 'G13843', 'G13844', 'G13845', 'G13846', 'G13848', 'G13849', 'G13851', 'G13852', 'G13854', 'G13855', 'G13857', 'G13859', 'G13860', 'G13862', 'G13863', 'G13864', 'G17676', 'G17677', 'G17678', 'G17679', 'G22664', 'G24905', 'G25202', 'G25206', 'G25207', 'G25208', 'G25211', 'G25213', 'G25214', 'G25216', 'G25984', 'G30357', 'G30358'],
   randers_dagtilbud: ['G19806', 'G19808', 'G19809', 'G19810', 'G19811', 'G19812', 'G19813', 'G19814', 'G19815', 'G19816', 'G19817', 'G19818', 'G19819', 'G19820', 'G19821', 'G19822', 'G20089', 'G20090', 'G20091', 'G20092', 'G20093', 'G20094', 'G20095', 'G20096', 'G20097', 'G20098', 'G20099', 'G20100', 'G20101', 'G20102', 'G20103', 'G20104', 'G20307', 'G20308', 'G20311', 'G20312', 'G20313', 'G20314', 'G20315', 'G20316', 'G20317', 'G20318', 'G20319', 'G20405', 'G20406', 'G20407', 'G20408', 'G20409', 'G20452', 'G20453', 'G20500', 'G20502', 'G20505', 'G20524', 'G20526', 'G20527', 'G20528', 'G20537', 'G20538', 'G20539', 'G20541', 'G20542', 'G20543', 'G20549', 'G20550', 'G23655', 'G24257', 'G24304', 'G24305', 'G24333', 'G24397', 'G24439', 'G24489', 'G24715', 'G24869', 'G24913', 'G25164', 'G25183', 'G25628', 'G25965', 'G27151', 'G27152'],
@@ -21,8 +20,34 @@ const INSTITUTIONS = {
   viborg_dagtilbud: ['G15382', 'G15384', 'G15386', 'G15388', 'G15390', 'G15392', 'G15394', 'G15396', 'G15396', 'G15398', 'G15400', 'G15417', 'G15425', 'G16091', 'G16691', 'G16693', 'G16695', 'G16697', 'G16698', 'G16699', 'G16700', 'G16703', 'G16708', 'G16710', 'G16711', 'G16713', 'G16714', 'G16716', 'G16718', 'G16719', 'G16720', 'G16722', 'G16723', 'G16728', 'G16731', 'G16732', 'G16733', 'G16734', 'G16737', 'G16739', 'G16740', 'G16742', 'G16743', 'G16747', 'G16750', 'G16752', 'G16753', 'G16754', 'G16755', 'G16756', 'G16760', 'G16761', 'G16762', 'G16763', 'G16765', 'G23630', 'G24395', 'G24767']
 };
 
-const DEFAULT_SITEDOMAIN = 'rumthisted.dk';
-const DEFAULT_API_PATH = '/grundskole-3';
+// Konfiguration der parrer gruppenavne med deres specifikke opsætning
+const GROUP_CONFIG = {
+  thisted_skoler: { domain: 'rumthisted.dk', path: '/grundskole-3' },
+  thisted_dagtilbud: { domain: 'rumthisted.dk', path: '/dagtilbud-5' },
+  aarhus_skoler: { domain: 'ulfiaarhus.dk', path: '/grundskole-0' },
+  aarhus_dagtilbud: { domain: 'ulfiaarhus.dk', path: '/dagtilbud-0' },
+  aalborg_skoler: { domain: 'aabenaalborg.dk', path: '/grundskole-1' },
+  aalborg_dagtilbud: { domain: 'aabenaalborg.dk', path: '/dagtilbud-4' },
+  esbjerg_skoler: { domain: 'ude.nu', path: '/skole' },
+  esbjerg_dagtilbud: { domain: 'ude.nu', path: '/dagtilbud-1' },
+  randers_skoler: { domain: 'udoglaer.randers.dk', path: '/grundskole-2' },
+  randers_dagtilbud: { domain: 'udoglaer.randers.dk', path: '/dagtilbud-3' },
+  skive_skoler: { domain: 'laeringsportalenskive.dk', path: '/aaben-skole' },
+  skive_dagtilbud: { domain: 'laeringsportalenskive.dk', path: '/aaben-dagtilbud' },
+  vejle_skoler: { domain: 'udoglaer.vejle.dk', path: '/grundskole-4' },
+  vejle_dagtilbud: { domain: 'udoglaer.vejle.dk', path: '/dagtilbud' },
+  viborg_skoler: { domain: 'klcviborg.dk', path: '/grundskole' },
+  viborg_dagtilbud: { domain: 'klcviborg.dk', path: '/dagtilbud-2' }
+};
+
+// BYGGER DATASTRUKTUREN ÉN GANG (Kører ved indlæsning for enorm performance-gevinst)
+const INST_MAP = new Map();
+for (const [groupName, ids] of Object.entries(INSTITUTIONS)) {
+  const config = GROUP_CONFIG[groupName];
+  if (config) {
+    ids.forEach(id => INST_MAP.set(id, config));
+  }
+}
 
 module.exports = {
   props: ['setIframeHeight', 'placement', 'institutionFilter'],
@@ -43,133 +68,81 @@ module.exports = {
   computed: {
     aktueltInstNr() {
       if (!this.institutionFilter) return null;
-      if (Array.isArray(this.institutionFilter)) {
-        return this.institutionFilter[0] || null;
-      }
-      return String(this.institutionFilter).trim();
+      return Array.isArray(this.institutionFilter) 
+        ? String(this.institutionFilter[0]).trim() 
+        : String(this.institutionFilter).trim();
     },
 
-    // 1. Finder SITEDOMAIN dynamisk baseret på institutions-ID'et
+    // O(1) opslag - markant hurtigere og renere
+    aktuelConfig() {
+      return INST_MAP.get(this.aktueltInstNr) || null;
+    },
+
     siteDomain() {
-      const instNr = this.aktueltInstNr;
-      if (INSTITUTIONS.thisted_skoler.includes(instNr) || INSTITUTIONS.thisted_dagtilbud.includes(instNr)) {
-        return 'rumthisted.dk';
-      } else if (INSTITUTIONS.aarhus_skoler.includes(instNr) || INSTITUTIONS.aarhus_dagtilbud.includes(instNr)) {
-        return 'ulfiaarhus.dk';
-      } else if (INSTITUTIONS.aalborg_skoler.includes(instNr) || INSTITUTIONS.aalborg_dagtilbud.includes(instNr)) {
-        return 'aabenaalborg.dk';
-      } else if (INSTITUTIONS.esbjerg_skoler.includes(instNr) || INSTITUTIONS.esbjerg_dagtilbud.includes(instNr)) {
-        return 'ude.nu';
-      } else if (INSTITUTIONS.randers_skoler.includes(instNr) || INSTITUTIONS.randers_dagtilbud.includes(instNr)) {
-        return 'udoglaer.randers.dk';
-      } else if (INSTITUTIONS.skive_skoler.includes(instNr) || INSTITUTIONS.skive_dagtilbud.includes(instNr)) {
-        return 'laeringsportalenskive.dk';
-      } else if (INSTITUTIONS.vejle_skoler.includes(instNr) || INSTITUTIONS.vejle_dagtilbud.includes(instNr)) {
-        return 'udoglaer.vejle.dk';
-      } else if (INSTITUTIONS.viborg_skoler.includes(instNr) || INSTITUTIONS.viborg_dagtilbud.includes(instNr)) {
-        return 'klcviborg.dk';
-      }
-      return DEFAULT_SITEDOMAIN;
+      return this.aktuelConfig ? this.aktuelConfig.domain : 'rumthisted.dk';
     },
 
-    // 2. Finder API_PATH dynamisk baseret på det specifikke institutionsmatch
     apiPath() {
-      const instNr = this.aktueltInstNr;
-      if (INSTITUTIONS.thisted_skoler.includes(instNr)) {
-        return '/grundskole-3';
-      } else if (INSTITUTIONS.thisted_dagtilbud.includes(instNr)) {
-        return '/dagtilbud-5';
-      } else if (INSTITUTIONS.aarhus_skoler.includes(instNr)) {
-        return '/grundskole-0';
-      } else if (INSTITUTIONS.aarhus_dagtilbud.includes(instNr)) {
-        return '/dagtilbud-0';
-      } else if (INSTITUTIONS.aalborg_skoler.includes(instNr)) {
-        return '/grundskole-1';
-      } else if (INSTITUTIONS.aalborg_dagtilbud.includes(instNr)) {
-        return '/dagtilbud-4'; // <-- NYT
-      } else if (INSTITUTIONS.esbjerg_skoler.includes(instNr)) {
-        return '/skole';
-      } else if (INSTITUTIONS.esbjerg_dagtilbud.includes(instNr)) {
-        return '/dagtilbud-1'; // <-- NYT
-      } else if (INSTITUTIONS.randers_skoler.includes(instNr)) {
-        return '/grundskole-2';
-      } else if (INSTITUTIONS.randers_dagtilbud.includes(instNr)) {
-        return '/dagtilbud-3'; // <-- NYT
-      } else if (INSTITUTIONS.skive_skoler.includes(instNr)) {
-        return '/aaben-skole';
-      } else if (INSTITUTIONS.skive_dagtilbud.includes(instNr)) {
-        return '/aaben-dagtilbud'; // <-- NYT
-      } else if (INSTITUTIONS.vejle_skoler.includes(instNr)) {
-        return '/grundskole-4';
-      } else if (INSTITUTIONS.vejle_dagtilbud.includes(instNr)) {
-        return '/dagtilbud'; // <-- NYT
-      } else if (INSTITUTIONS.viborg_skoler.includes(instNr)) {
-        return '/grundskole';
-      } else if (INSTITUTIONS.viborg_dagtilbud.includes(instNr)) {
-        return '/dagtilbud-2'; // <-- NYT
-      }
-      return DEFAULT_API_PATH;
+      return this.aktuelConfig ? this.aktuelConfig.path : '/grundskole-3';
     },
 
-    apiBaseUrl() { return `https://api.${this.siteDomain}`; },
-    // BEHOLDT: wwwBaseUrl gennemtvinger "www." for alt på laeringsportalenskive.dk (både skoler og dagtilbud)
-    wwwBaseUrl() { 
-      if (this.siteDomain === 'laeringsportalenskive.dk') {
-        return `https://www.${this.siteDomain}`; 
-      }
-      return `https://${this.siteDomain}`; 
+    apiBaseUrl() { 
+      return `https://api.${this.siteDomain}`; 
     },
-    apiUrl() { return `${this.apiBaseUrl}${this.apiPath}?format=json&region=content`; }
+    
+    wwwBaseUrl() { 
+      return this.siteDomain === 'laeringsportalenskive.dk' 
+        ? `https://www.${this.siteDomain}` 
+        : `https://${this.siteDomain}`; 
+    },
+    
+    apiUrl() { 
+      return `${this.apiBaseUrl}${this.apiPath}?format=json&region=content`; 
+    }
   },
 
   methods: {
+    setHeight(height) {
+      if (this.setIframeHeight) {
+        this.setIframeHeight(height);
+      } else {
+        // Fallback for native Aula Iframe PostMessage (T0150 Widget guide)
+        window.parent.postMessage({
+          request: 'setIframeHeight',
+          metadata: { height: height }
+        }, '*'); // Overvej at skifte '*' til specifik Aula origin i prod
+      }
+    },
+
+    async fetchMedTimeout(url, options = {}) {
+      const timeout = 8000; // 8 sekunders timeout
+      const controller = new AbortController();
+      const id = setTimeout(() => controller.abort(), timeout);
+      
+      const response = await fetch(url, { ...options, signal: controller.signal });
+      clearTimeout(id);
+      return response;
+    },
+
     async hentData() {
-      const instNr = this.aktueltInstNr;
-
-      // Validering mod alle gyldige lister
-      const fundet = instNr && (
-        INSTITUTIONS.thisted_skoler.includes(instNr) ||
-        INSTITUTIONS.thisted_dagtilbud.includes(instNr) ||
-        INSTITUTIONS.aarhus_skoler.includes(instNr) ||
-        INSTITUTIONS.aarhus_dagtilbud.includes(instNr) ||
-        INSTITUTIONS.aalborg_skoler.includes(instNr) ||
-        INSTITUTIONS.aalborg_dagtilbud.includes(instNr) ||
-        INSTITUTIONS.esbjerg_skoler.includes(instNr) ||
-        INSTITUTIONS.esbjerg_dagtilbud.includes(instNr) ||
-        INSTITUTIONS.randers_skoler.includes(instNr) ||
-        INSTITUTIONS.randers_dagtilbud.includes(instNr) ||
-        INSTITUTIONS.skive_skoler.includes(instNr) ||
-        INSTITUTIONS.skive_dagtilbud.includes(instNr) ||
-        INSTITUTIONS.vejle_skoler.includes(instNr) ||
-        INSTITUTIONS.vejle_dagtilbud.includes(instNr) ||
-        INSTITUTIONS.viborg_skoler.includes(instNr) ||
-        INSTITUTIONS.viborg_dagtilbud.includes(instNr)
-      );
-
-      if (!fundet) {
+      if (!this.aktuelConfig) {
         this.ikkeUnderstoettet = true;
         this.loading = false;
-        if (this.setIframeHeight) this.setIframeHeight(260);
+        this.setHeight(260);
         return;
       }
-
-      let data1 = null;
-      let data2 = null;
 
       try {
         this.status = 'Indlæser indhold...';
         
-        const res1 = await fetch(this.apiUrl);
-        data1 = await res1.json();
+        const res1 = await this.fetchMedTimeout(this.apiUrl);
+        if (!res1.ok) throw new Error('Netværksfejl ved hentning af layout');
+        const data1 = await res1.json();
         
         const layoutRows = data1?.content?.layout_builder__layout || [];
-        let udtrukketLink = null;
-
-        const direkteLink = layoutRows[0]?.regions?.content?.[0]?.results?.[0]?.link;
+        let udtrukketLink = layoutRows[0]?.regions?.content?.[0]?.results?.[0]?.link;
         
-        if (direkteLink) {
-          udtrukketLink = direkteLink;
-        } else {
+        if (!udtrukketLink) {
           const viewSection = layoutRows.find(row => row?.regions?.content?.some(item => item?.type === 'view'));
           const viewModule = viewSection?.regions?.content?.find(item => item?.type === 'view');
           udtrukketLink = viewModule?.results?.[0]?.link;
@@ -179,14 +152,15 @@ module.exports = {
           throw new Error('Der er ikke lagt noget aktivt forløb på denne portal endnu.');
         }
         
-        const res2 = await fetch(`${this.apiBaseUrl}${udtrukketLink}?format=json`);
-        data2 = await res2.json();
+        const res2 = await this.fetchMedTimeout(`${this.apiBaseUrl}${udtrukketLink}?format=json`);
+        if (!res2.ok) throw new Error('Netværksfejl ved hentning af indhold');
+        const data2 = await res2.json();
         
         const indhold = data2?.content?.content;
         
         if (indhold) {
           this.labelTekst = indhold.label || 'Ingen titel fundet';
-          this.bodyTekst = indhold.body || 'Ingen beskrivelse fundet';
+          this.bodyTekst = indhold.body || '';
           this.forloebsLink = indhold.link || '';
           
           const sources = indhold.field_image?.sources || [];
@@ -199,9 +173,7 @@ module.exports = {
               const forskel = Math.abs(bredde - 300);
               if (forskel < mindsteForskel) {
                 mindsteForskel = forskel;
-                if (source?.srcset) {
-                  bedsteBillede = source.srcset.split(' ')[0];
-                }
+                if (source?.srcset) bedsteBillede = source.srcset.split(' ')[0];
               }
             }
           });
@@ -210,16 +182,14 @@ module.exports = {
         }
         
         this.loading = false;
-        if (this.setIframeHeight) this.setIframeHeight(350);
+        this.setHeight(350);
         
       } catch (fejl) {
-        console.error("Widget fangede en fejl:", fejl);
-        console.log("Data1 ved fejl:", data1);
-        console.log("Data2 ved fejl:", data2);
-        
-        this.apiFejlBesked = fejl.message;
+        // Kun generel besked ud til pædagogerne i produktion. 
+        // Den rå fejl kan opsamles i et logging tool som Sentry hvis muligt.
+        this.apiFejlBesked = 'Vi kunne desværre ikke indlæse indholdet i øjeblikket. Prøv igen senere.';
         this.loading = false;
-        if (this.setIframeHeight) this.setIframeHeight(220);
+        this.setHeight(150); 
       }
     },
     
@@ -240,8 +210,6 @@ module.exports = {
   <div>
     <div v-if="apiFejlBesked" class="api-fejl-boks">
       <p>{{ apiFejlBesked }}</p>
-      <p class="inst-nummer-info">Dit institutionsnummer er: <strong>{{ aktueltInstNr || 'Ikke tilgængeligt' }}</strong></p>
-      <p class="api-url-info">Forsøgt API-link: <br><code>{{ apiUrl }}</code></p>
     </div>
 
     <p v-else-if="loading" class="loading-tekst">
@@ -249,10 +217,8 @@ module.exports = {
     </p>
     
     <div v-else-if="ikkeUnderstoettet" class="ikke-understoettet-boks">
-      <p>Ind til videre virker denne widget kun for institutioner i Aarhus, Aalborg, Esbjerg, Randers, Skive, Vejle, Viborg og Thisted kommuner.</p>
-      <p>Hvis din kommune er med i OS2udoglær, kan denne widget udvikles til at vise seneste nyt fra jeres portal.</p>
-      <p class="inst-nummer-info">Dit institutionsnummer er: <strong>{{ aktueltInstNr || 'Ikke tilgængeligt' }}</strong></p>
-      <p class="api-url-info">Genereret API-link: <br><code>{{ apiUrl }}</code></p>
+      <p>Din institution understøtter i øjeblikket ikke denne widget.</p>
+      <p>Hvis din kommune er med i OS2udoglær, kan funktionen dog nemt aktiveres fremover.</p>
     </div>
 
     <div v-else @click="aabenEksterntLink" class="aula-widget-scroll">
@@ -272,60 +238,36 @@ module.exports = {
 <style scoped>
 .aula-widget-scroll {
   position: relative;
-  width: 300px;
+  width: 100%; /* Sørger for den tilpasser sig iframe-bredden som defineret af Aula */
+  max-width: 300px;
   height: 350px;
   max-height: 350px;
   overflow-y: auto;
   cursor: pointer;
   box-sizing: border-box;
   padding: 10px;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: Arial, sans-serif; /* Tilpasset Aulas fallback i designguiden */
 }
 
 .loading-tekst {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 14px;
   padding: 15px;
   color: #333;
 }
 
 .ikke-understoettet-boks, .api-fejl-boks {
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
   box-sizing: border-box;
   padding: 15px;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: Arial, sans-serif;
   font-size: 13px;
   line-height: 1.4;
-  color: #666;
+  color: #333; /* Mere neutral og tilpasset Aulas standardfarver */
   background-color: #f9f9f9;
   border-radius: 4px;
-  border: 1px solid #eee;
-}
-.ikke-understoettet-boks p, .api-fejl-boks p { margin-top: 0; margin-bottom: 10px; }
-.ikke-understoettet-boks p:last-child, .api-fejl-boks p:last-child { margin-bottom: 0; }
-
-.inst-nummer-info {
-  margin-top: 15px !important;
-  font-size: 11px;
-  color: #999;
-  border-top: 1px dashed #ddd;
-  padding-top: 10px;
-  margin-bottom: 5px !important;
-}
-
-.api-url-info {
-  font-size: 10px;
-  color: #b55;
-  word-break: break-all;
-  margin-top: 5px !important;
-}
-.api-url-info code {
-  background-color: #fff2f2;
-  padding: 2px 4px;
-  border: 1px solid #fdd;
-  border-radius: 3px;
-  display: inline-block;
-  margin-top: 4px;
+  border: 1px solid #ddd;
 }
 
 h2 { font-size: 14px; color: #666; margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.5px; }
@@ -338,7 +280,7 @@ img { width: 100%; height: auto; display: block; margin-bottom: 15px; }
   bottom: 0;
   left: 0;
   width: 100%;
-  background: linear-gradient(to top, rgba(255,255,255,0.5) 60%, rgba(255,255,255,0) 100%);
+  background: linear-gradient(to top, rgba(255,255,255,0.7) 60%, rgba(255,255,255,0) 100%);
   color: #0056b3;
   font-size: 11px;
   font-weight: bold;
