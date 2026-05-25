@@ -91,13 +91,15 @@ module.exports = {
     },
     
     wwwBaseUrl() { 
-      return this.siteDomain === 'laeringsportalenskive.dk' 
+      return this.siteDomain === 'laeringsportalenskive.dk'
+        || this.siteDomain === 'ulfiaarhus.dk'
+        || this.siteDomain === 'ude.nu' 
         ? `https://www.${this.siteDomain}` 
         : `https://${this.siteDomain}`; 
     },
     
     apiUrl() { 
-      return `${this.apiBaseUrl}${this.apiPath}?format=json&region=content`; 
+      return `${this.apiBaseUrl}${this.apiPath}?format=json&region=content&sort_by=created`; 
     }
   },
 
@@ -110,7 +112,7 @@ module.exports = {
         window.parent.postMessage({
           request: 'setIframeHeight',
           metadata: { height: height }
-        }, '*'); // Overvej at skifte '*' til specifik Aula origin i prod
+        }, '*'); // Overvej at skifte '*' til specifik Aula origin i prod?
       }
     },
 
@@ -195,6 +197,7 @@ module.exports = {
     
     aabenEksterntLink() {
       if (this.forloebsLink) {
+        console.log(`${this.wwwBaseUrl}${this.forloebsLink}`);
         window.open(`${this.wwwBaseUrl}${this.forloebsLink}`, '_blank');
       }
     }
