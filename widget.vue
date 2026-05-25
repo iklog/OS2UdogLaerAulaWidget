@@ -40,7 +40,7 @@ const GROUP_CONFIG = {
   viborg_dagtilbud: { domain: 'klcviborg.dk', path: '/dagtilbud-2' }
 };
 
-// BYGGER DATASTRUKTUREN ÉN GANG (Kører ved indlæsning for enorm performance-gevinst)
+// BYGGER DATASTRUKTUREN ÉN GANG
 const INST_MAP = new Map();
 for (const [groupName, ids] of Object.entries(INSTITUTIONS)) {
   const config = GROUP_CONFIG[groupName];
@@ -73,7 +73,7 @@ module.exports = {
         : String(this.institutionFilter).trim();
     },
 
-    // O(1) opslag - markant hurtigere og renere
+    // O(1) opslag
     aktuelConfig() {
       return INST_MAP.get(this.aktueltInstNr) || null;
     },
