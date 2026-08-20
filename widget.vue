@@ -21,16 +21,18 @@
       <p>Hvis din kommune er med i OS2udoglær, kan funktionen dog nemt aktiveres fremover.</p>
     </div>
 
-    <div v-else @click="aabenEksterntLink" class="aula-widget-wrapper">
-      <h2>Nyt fra {{ siteDomain }}</h2>
-      <h1>{{ labelTekst }}</h1>
+    <div v-else @click="aabenEksterntLink" :class="['aula-widget-wrapper', widgetStorrelse]">
+      <h2>Nyt fra {{ portalTitel }}</h2>
       
-      <div v-if="billedeUrl" class="billede-ramme">
-        <img :src="billedeUrl" alt="Forløbsbillede" />
+      <div class="indhold-wrapper">
+        <div v-if="billedeUrl" class="billede-ramme">
+          <img :src="billedeUrl" alt="Forløbsbillede" />
+        </div>
+        <h1>{{ labelTekst }}</h1>
       </div>
       
-      <div class="body-scroll-container">
-        <widget-html :html="bodyTekst" class="brødtekst"></widget-html>
+      <div v-if="widgetStorrelse !== 'minimal'" class="body-scroll-container">
+        <widget-html v-if="bodyTekst" :html="bodyTekst" class="brødtekst"></widget-html>
         <div class="floating-tekst-fixed">Klik for at læse mere...</div>
       </div>
     </div>
@@ -63,6 +65,12 @@ module.exports = {
         : String(this.institutionFilter).trim();
     },
 
+    // Det pæne navn til overskriften (fx "Læringsportalen Skive")
+    portalTitel() {
+      return this.aktuelConfig ? (this.aktuelConfig.title || this.aktuelConfig.domain) : '';
+    },
+
+    // Det rene domæne til tekniske stier (fx "laeringsportalenskive.dk")
     siteDomain() {
       return this.aktuelConfig ? this.aktuelConfig.domain : '';
     },
@@ -90,6 +98,15 @@ module.exports = {
     fuldEksternUrl() {
       if (!this.forloebsLink || !this.wwwBaseUrl) return '';
       return `${this.wwwBaseUrl}${this.forloebsLink}`;
+    },
+
+    // Returnerer enten 'minimal', 'medium' eller 'large'
+    widgetStorrelse() {
+      return this.aktuelConfig ? (this.aktuelConfig.widgetSize || 'medium') : 'medium';
+    },
+
+    antalTilbud() {
+      return this.aktuelConfig ? (this.aktuelConfig.numberOfOffers || 1) : 1;
     }
   },
 
@@ -118,7 +135,7 @@ module.exports = {
 
       try {
         this.status = 'Henter konfiguration...';
-        const configUrl = `https://api.iklog.dk/iklogudoglaer.php?kode=${this.aktueltInstNr}`;
+        const configUrl = `https://api.iklog.dk/beta/iklogudoglaer.php?kode=${this.aktueltInstNr}`;
         
         const headers = {};
         if (this.aulaUuid) {
@@ -135,9 +152,13 @@ module.exports = {
           return;
         }
 
+        // Gemmer de returnerede indstillinger fra PHP
         this.aktuelConfig = {
           domain: configData.domain,
-          path: configData.path
+          path: configData.path,
+          title: configData.title || configData.domain,
+          widgetSize: configData.widgetSize || 'medium',
+          numberOfOffers: configData.numberOfOffers || 1
         };
 
         this.status = 'Indlæser indhold...';
@@ -202,11 +223,24 @@ module.exports = {
     
     aabenEksterntLink() {
       if (!this.forloebsLink) return;
-      
-      // Standard DOM-opslag i stedet for det ulovlige this.$refs jf. afsnit 4.8
+
+      // 1. Send klik-registrering via ren URL og custom HTTP-header (omgår adblockere)
+      const clickUrl = `https://api.iklog.dk/beta/iklogudoglaer.php?kode=${this.aktueltInstNr}`;
+
+      fetch(clickUrl, {
+        method: 'GET',
+        headers: {
+          'X-Widget-Action': 'open'
+        },
+        keepalive: true
+      }).catch(() => {});
+
+      // 2. Udfør godkendt navigation via skema-submit
       const form = document.getElementById('aula-secure-navigation-form');
       if (form) {
-        form.submit();
+        setTimeout(() => {
+          form.submit();
+        }, 80);
       }
     }
   },
@@ -220,16 +254,22 @@ module.exports = {
 </script>
 
 <style scoped>
-/* Alt CSS er isoleret med 'scoped' jf. afsnit 4.1.2 og 4.8 */
+/* Standard container opsætning */
 .aula-widget-wrapper {
   position: relative;
   box-sizing: border-box;
   padding: 10px;
   font-family: Arial, sans-serif;
   cursor: pointer;
+  container-type: inline-size;
 }
 
-/* Scroll-container tager nu også fuld dynamisk bredde */
+/* Standard opstilling (large): Billede øverst, overskrift under */
+.indhold-wrapper {
+  display: block;
+}
+
+/* Standard scroll-container til brødtekst (large) */
 .body-scroll-container {
   position: relative;
   height: 150px; 
@@ -257,23 +297,83 @@ module.exports = {
   border: 1px solid #ddd;
 }
 
-h2 { font-size: 14px; color: #666; margin: 0 0 5px 0; text-transform: uppercase; letter-spacing: 0.5px; }
-h1 { font-size: 18px; margin-top: 0; margin-bottom: 10px; color: #000; line-height: 1.2; }
+/* Tekst-skalering og tekstbrydning på overskriften */
+h2 { 
+  font-size: clamp(10px, 4cqw, 14px); 
+  color: #666; 
+  margin: 0 0 5px 0; 
+  text-transform: uppercase; 
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+h1 { 
+  font-size: 18px; 
+  margin-top: 0; 
+  margin-bottom: 10px; 
+  color: #000; 
+  line-height: 1.2; 
+  overflow-wrap: break-word;
+}
+
 .billede-ramme { width: 100%; margin-bottom: 10px; }
 img { width: 100%; height: auto; display: block; }
-.brødtekst { font-size: 14px; line-height: 1.4; color: #333; padding-bottom: 20px; }
+.brødtekst { font-size: 14px; line-height: 1.4; color: #333; padding-bottom: 25px; }
 
 .floating-tekst-fixed {
   position: sticky;
   bottom: 0;
   left: 0;
   width: 100%;
-  background: linear-gradient(to top, rgba(255,255,255,0.9) 60%, rgba(255,255,255,0) 100%);
+  background: linear-gradient(to top, rgba(255,255,255,0.95) 70%, rgba(255,255,255,0) 100%);
   color: #0056b3;
   font-size: 11px;
   font-weight: bold;
   text-align: center;
   padding-top: 5px;
   pointer-events: none;
+}
+
+/* -------------------------------------------------------------
+   MINIMAL & MEDIUM: Billede fylder 30% side om side med titel
+   ------------------------------------------------------------- */
+.aula-widget-wrapper.minimal .indhold-wrapper,
+.aula-widget-wrapper.medium .indhold-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.aula-widget-wrapper.minimal .billede-ramme,
+.aula-widget-wrapper.medium .billede-ramme {
+  flex: 0 0 30%;
+  width: 30%;
+  margin-bottom: 0;
+}
+
+.aula-widget-wrapper.minimal .billede-ramme img,
+.aula-widget-wrapper.medium .billede-ramme img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.aula-widget-wrapper.minimal h1,
+.aula-widget-wrapper.medium h1 {
+  flex: 1;
+  font-size: 14px;
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* -------------------------------------------------------------
+   MEDIUM SPECIFIK: Tilpasset højde på brødtekstboksen
+   ------------------------------------------------------------- */
+.aula-widget-wrapper.medium .body-scroll-container {
+  height: 100px;
+  margin-top: 8px;
 }
 </style>
